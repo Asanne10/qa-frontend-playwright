@@ -2,6 +2,27 @@
 
 Pruebas de login, carrito y checkout con Playwright, Cucumber y JavaScript. Los escenarios están escritos en Gherkin y las páginas siguen Page Object Model.
 
+## Estructura del proyecto
+
+Todo el código de pruebas está dentro de `src`. Los archivos de configuración, los scripts de ejecución y los reportes tienen responsabilidades distintas y permanecen en la raíz.
+
+| Carpeta | Responsabilidad |
+| --- | --- |
+| `src/features/` | Escenarios Gherkin de login, carrito y checkout |
+| `src/pages/` | Localizadores y acciones: `LoginPage`, `InventoryPage`, `CartPage` y `CheckoutPage` |
+| `src/steps/` | Un archivo por página: `login.steps.js`, `inventory.steps.js`, `cart.steps.js` y `checkout.steps.js` |
+| `src/components/` | Componente `ProductList`, compartido por las páginas con productos |
+| `src/flows/` | Flujos de preparación compartidos, como iniciar sesión con el usuario estándar |
+| `src/assertions/` | Aserciones reutilizadas por más de un flujo, como comprobar el carrito |
+| `src/data/` | Credenciales públicas de preparación y generación de usuario inexistente |
+| `src/support/` | World y hooks de apertura y cierre de cada sesión |
+| `src/utils/` | Funciones de datos sin interacción con la interfaz, como convertir importes a centavos |
+| `scripts/` | Ejecución, revisión de sintaxis e historial de reportes |
+
+Cada step se define una sola vez, en el archivo de la página a la que corresponde. Los features pueden reutilizarlo al recorrer varias pantallas. Por ejemplo, la compra utiliza steps de catálogo, carrito y checkout sin duplicar las definiciones.
+
+Los selectores y las interacciones se mantienen en Page Objects y componentes. Los steps coordinan las acciones y validan resultados. Los flujos y aserciones compartidos se importan explícitamente; no registran nuevos steps.
+
 ## Requisitos
 
 - Node.js 24 y npm.
@@ -44,7 +65,16 @@ npm.cmd test
 | --- | --- |
 | `npm.cmd run test:headed` | Ejecutar mostrando el navegador |
 | `npm.cmd run test:smoke` | Ejecutar login válido y compras: 3 ejemplos |
+| `npm.cmd run test:regresion` | Ejecutar la regresión completa: 13 ejemplos |
 | `npm.cmd test -- --tags @FE-S04` | Ejecutar los ejemplos del carrito |
+
+Los tres features llevan `@regresion`, porque sus 13 ejemplos comprueban comportamientos existentes de la suite. `@smoke` conserva el subconjunto de 3 ejemplos críticos y `@login`, `@carrito` y `@checkout` permiten seleccionar funcionalidades. Los IDs `FE-S` y `FE-EX` mantienen la trazabilidad. Se retiró la etiqueta `@frontend`.
+
+Ejemplo con navegador visible y filtro de regresión:
+
+```powershell
+npm.cmd run test:headed -- --tags "@regresion"
+```
 
 ## Reportes
 
@@ -91,3 +121,4 @@ En el repositorio, abrir **Actions > Pruebas Frontend > Run workflow**. Al final
 - Si falta el navegador, ejecutar `npx.cmd playwright install chromium` en esa máquina.
 - Si falla la navegación por certificado, proxy o timeout, comprobar el acceso a Sauce Demo y la configuración de red. No se desactiva la validación de certificados.
 - El modo con ventana necesita una sesión de escritorio con permisos para abrir Chromium.
+

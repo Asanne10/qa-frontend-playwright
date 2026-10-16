@@ -1,5 +1,5 @@
 # language: en
-@frontend @carrito
+@regresion @carrito
 Feature: Productos seleccionados en carrito
   @FE-S04
   Scenario Outline: Mantener los productos seleccionados [<caso>]
@@ -12,3 +12,4 @@ Feature: Productos seleccionados en carrito
       | caso     | productos                                |
       | FE-EX-07 | Sauce Labs Backpack                      |
       | FE-EX-08 | Sauce Labs Backpack;Sauce Labs Bike Light |
+

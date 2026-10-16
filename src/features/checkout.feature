@@ -1,5 +1,5 @@
 # language: en
-@frontend @checkout
+@regresion @checkout
 Feature: Validación del comprador y confirmación
   @FE-S05
   Scenario Outline: Solicitar los datos del comprador [<caso>]
@@ -30,3 +30,4 @@ Feature: Validación del comprador y confirmación
       | caso     | productos                                | nombre | apellido | postal |
       | FE-EX-12 | Sauce Labs Backpack                      | Martin | Ccencho  | 11001  |
       | FE-EX-13 | Sauce Labs Backpack;Sauce Labs Bike Light | Martin | Ccencho  | 11001  |
+
