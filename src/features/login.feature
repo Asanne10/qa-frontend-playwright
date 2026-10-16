@@ -1,5 +1,5 @@
 # language: en
-@frontend @login
+@regresion @login
 Feature: Acceso a Sauce Demo
   Background:
     Given que estoy en el login sin sesión
@@ -34,3 +34,4 @@ Feature: Acceso a Sauce Demo
       | caso     | usuario       | clave        | mensaje                            |
       | FE-EX-05 |               | secret_sauce | Epic sadface: Username is required  |
       | FE-EX-06 | standard_user |              | Epic sadface: Password is required  |
+

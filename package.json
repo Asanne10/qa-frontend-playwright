@@ -7,6 +7,7 @@
     "test": "node scripts/run-tests.js",
     "test:headed": "cross-env HEADLESS=false node scripts/run-tests.js",
     "test:smoke": "node scripts/run-tests.js --tags @smoke",
+    "test:regresion": "node scripts/run-tests.js --tags @regresion",
     "test:dry": "cucumber-js --profile dry",
     "check": "node scripts/check-syntax.js"
   },
@@ -19,3 +20,4 @@
     "cross-env": "10.1.0"
   }
 }
+

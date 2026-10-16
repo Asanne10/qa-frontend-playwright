@@ -1,7 +1,7 @@
 const { createRun } = require('./scripts/report-history');
 const path = require('node:path');
 const common = {
-  paths: ['features/*.feature'],
+  paths: ['src/features/*.feature'],
   require: ['src/support/*.js', 'src/steps/*.js'],
   parallel: 1,
   retry: 0
@@ -25,3 +25,4 @@ module.exports = {
   },
   dry: { ...common, dryRun: true, format: ['summary'] }
 };
+

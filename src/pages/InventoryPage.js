@@ -7,6 +7,17 @@ class InventoryPage {
     this.title = page.getByTestId('title');
     this.cartBadge = page.getByTestId('shopping-cart-badge');
     this.cartLink = page.getByTestId('shopping-cart-link');
+    const firstProduct = this.products.items.first();
+    this.firstProductName = firstProduct.getByTestId('inventory-item-name');
+    this.firstProductPrice = firstProduct.getByTestId('inventory-item-price');
+    this.firstProductAddButton = firstProduct.getByRole('button', {
+      name: 'Add to cart', exact: true
+    });
+  }
+  removeButtonFor(name) {
+    return this.products.item(name).getByRole('button', {
+      name: 'Remove', exact: true
+    });
   }
   async addProducts(names) {
     const selected = [];
@@ -21,3 +32,4 @@ class InventoryPage {
   async openCart() { await this.cartLink.click(); }
 }
 module.exports = { InventoryPage };
+
