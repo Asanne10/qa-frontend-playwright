@@ -1,0 +1,21 @@
+{
+  "name": "reto-qa-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reto Sauce Demo - Playwright, Cucumber y POM",
+  "scripts": {
+    "test": "node scripts/run-tests.js",
+    "test:headed": "cross-env HEADLESS=false node scripts/run-tests.js",
+    "test:smoke": "node scripts/run-tests.js --tags @smoke",
+    "test:dry": "cucumber-js --profile dry",
+    "check": "node scripts/check-syntax.js"
+  },
+  "engines": {
+    "node": "22 || 24 || >=26"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "13.3.0",
+    "@playwright/test": "1.56.1",
+    "cross-env": "10.1.0"
+  }
+}
